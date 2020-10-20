@@ -1,29 +1,23 @@
-from django.db import models, migrations
-
-# Create your models here.
+from django.db import models
 
 class Pizza(models.Model):
-	""" some pizza things, you know. """
-	atomic = False
-	text = models.TextField()
+	""" Some pizza"""
+	text = models.CharField(max_length=200)
 	date_added = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		""" Return a string representation of the model."""
+		""" Return a string representation of the Model. """
 		return self.text
 
-
-class Topping(models.Model):
-	""" Marhgarita pizza. """
-	pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-	name = models.CharField(max_length=100)
-	date_added = models.DateTimeField(auto_now_add=True)
+class Toppings(models.Model):
+	""" Toppings for the pizzas. """
+	topping = models.ForeignKey(Pizza, on_delete=models.CASCADE)
+	text = models.CharField(max_length=200)
+	date_added= models.DateTimeField(auto_now_add=True)
 
 	class Meta:
 		verbose_name_plural = 'entries'
 
 	def __str__(self):
-		""" Return a string representation of the model. """
-
-		return self.name
-
+		""" Return the representation of the model."""
+		return f"{self.text[:50]}..."

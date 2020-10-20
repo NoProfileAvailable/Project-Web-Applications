@@ -1,10 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
-from .models import Pizza, Topping
-
+from .models import Pizza, Toppings
 
 admin.site.register(Pizza)
-# p_admin
-# roottoor
-admin.site.register(Topping)
+admin.site.register(Toppings)
+

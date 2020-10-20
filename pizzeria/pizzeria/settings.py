@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2)#(wdc9^9w%915r4r)ui-r31lmuvcno=dzngp3c6ut08x=zpe'
+SECRET_KEY = '+mf9v6_d%fw*q%c$g5h*1c8nlc0b+)iyilm#1a$e1)6qj5c3ls'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # My Apps
+    # My Django Apps
     'pizzerias',
 
     # Default Django Apps

@@ -1,0 +1,17 @@
+{% extends "pizzerias/base.html" %}
+
+{% block content %}
+  
+  <p>Toppings</p>
+
+  <ul>
+  	{% for topping in toppings %}
+  	  <li>
+  	  	<a href="{% url 'pizzerias:topping' topping.id %}"> {{ topping }}</a>
+  	  </li>
+  	  {% empty %}
+  	  <li> No toppings have been added yet.</li>
+  	  {% endfor %}
+  </ul>
+
+{% endblock content %}
