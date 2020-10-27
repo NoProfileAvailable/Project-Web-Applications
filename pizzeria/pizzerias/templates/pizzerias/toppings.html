@@ -1,17 +1,21 @@
-{% extends "pizzerias/base.html" %}
+{% extends 'pizzerias/base.html' %}
 
 {% block content %}
   
   <p>Toppings</p>
 
   <ul>
-  	{% for topping in toppings %}
+    {% for top in toppings %}
   	  <li>
-  	  	<a href="{% url 'pizzerias:topping' topping.id %}"> {{ topping }}</a>
+  	  	  <a href="{% url 'pizzerias:topping' top.id %}"> {{ top }}</a>
   	  </li>
-  	  {% empty %}
+  	{% empty %}
   	  <li> No toppings have been added yet.</li>
-  	  {% endfor %}
+  	{% endfor %}
   </ul>
 
 {% endblock content %}
+
+
+
+

@@ -1,0 +1,21 @@
+	Django
+
+1. Order erstellen
+2. venv erstellen (python -m venv xyz_env)
+3. aktivieren (source f_env/bin/activate)
+4. django installieren (pip install django)
+5. migrieren damit die Datenbank steht
+6. Server starten
+7. startapp order erstellen. (python manage.py startapp xyz's)
+8. models.py angeben welche Modelle es geben soll (Klassen)
+9. settings.py die App eintragen
+10. migrieren
+11. admin erstellen (python manage.py createsuperuser )
+12. Ordner mma/templates/mma/ erstellen und darin die HTML dateien verwahren.
+13. index.html, base.html, 
+
+Um auf eine neue Seite zu gelangen, muss eine URL erstellt werden (urls.py). in views.py muss eine Klasse definiert werden die diese Anfrage bearbeitet. Sowie muss sie in der Index.html Datei aufgeführt sein, wenn Sie auf der Startseite stehen soll.
+
+15. forms.py im selben Verzeichnis wie models.py erstellen. Um Verschiedene Formen zu erstellen.
+
+16. in urls.py new_topic.html erstellen. Damit werden später neue Kurse erstellt.

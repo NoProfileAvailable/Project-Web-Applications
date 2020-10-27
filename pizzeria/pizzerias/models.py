@@ -12,7 +12,7 @@ class Pizza(models.Model):
 class Toppings(models.Model):
 	""" Toppings for the pizzas. """
 	topping = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-	text = models.CharField(max_length=200)
+	text = models.TextField()
 	date_added= models.DateTimeField(auto_now_add=True)
 
 	class Meta:

@@ -1,19 +1,18 @@
-{% extends 'pizzerias/base.html'%}
+{% extends 'pizzerias/base.html' %}
 
 {% block content%}
 
-  <p>Topping: {{topping}}</p>
 
   <p>Entries:</p>
   <ul>
-    {% for entry in entries %}
+    {% for topping in toppings %}
       <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-        <p>{{ entry.text|linebreaks }}</p>
+        <p>{{ topping.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ topping.text|linebreaks }}</p>
       </li>
     {% empty %}
       <li>There are no entries for this topic yet.</li>
     {% endfor %}
   </ul>
 
-{% endblock content%}
+{% endblock content %}

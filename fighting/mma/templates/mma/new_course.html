@@ -1,0 +1,12 @@
+{% extends "mma/base.html" %}
+
+{% block content %}
+  <p>Add a new course:</p>
+
+  <form action="{% url 'mma:new_course' %}" method='post'>
+  	{% csrf_token %}
+  	{{ form.as_p }}
+  	<button name="submit"> Add course</button>
+  </form>
+
+{% endblock content %}

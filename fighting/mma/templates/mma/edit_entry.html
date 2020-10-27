@@ -1,0 +1,14 @@
+{% extends "mma/base.html" %}
+
+{% block content %}
+  <p><a href=" url 'mma:course' course.id ">{{ course }}</a></p>
+  
+  <p>Edit entry:</p>
+
+  <form action="{% url 'mma:edit_entry' entry.id %}" method="post">
+  	{% csrf_token %}
+  	{{ form.as_p }}
+  	<button name="submit">Save changes</button>
+  </form>
+
+{% endblock content %}
