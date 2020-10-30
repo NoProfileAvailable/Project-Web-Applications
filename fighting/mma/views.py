@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from .models import Mixedmartialart, Entry
 from .forms import MixedmartialartForm, EntryForm
@@ -7,19 +9,27 @@ def index(request):
 	""" The home page for MMA. """
 	return render(request, 'mma/index.html')
 
+@login_required
 def mixedmartialarts(request):
 	""" Listing all Courses. """
-	mixedmartialarts = Mixedmartialart.objects.order_by('date_added')
+	mixedmartialarts = Mixedmartialart.objects.filter(owner=request.user).order_by('date_added')
 	context = {'mixedmartialarts': mixedmartialarts}
 	return render(request, 'mma/mixedmartialarts.html', context)
 
+@login_required
 def course(request, course_id):
 	""" Showing the entries form every course. """
 	mixedmartialart = Mixedmartialart.objects.get(id=course_id)
+
+	check_owner(request, mixedmartialart)
+	# if mixedmartialart.owner != request.user:
+	# 	raise Http404
+
 	entries = mixedmartialart.entry_set.order_by('-date_added')
 	context = {'mixedmartialart': mixedmartialart, 'entries': entries}
 	return render(request, 'mma/course.html', context)
 
+@login_required
 def new_course(request):
 	""" Adding new courses to the Site. """
 	if request.method != 'POST':
@@ -28,16 +38,24 @@ def new_course(request):
 	else:
 		form = MixedmartialartForm(data=request.POST)
 		if form.is_valid():
-			form.save()
+			new_course = form.save(commit=False)
+			new_course.owner = request.user
+			new_course.save()
+			# form.save()
 			return redirect('mma:mixedmartialarts')
 
 	# Display a blank or invalid form.
 	context = {'form': form}
 	return render(request, 'mma/new_course.html', context)
 
+@login_required
 def new_entry(request, topic_id):
 	""" Add a new entry for a particular topic. """
 	course = Mixedmartialart.objects.get(id=topic_id)
+
+	check_owner(request, course)
+	# if course.owner != request.user:
+	# 	raise Http404
 
 	if request.method != 'POST':
 		form = EntryForm()
@@ -53,6 +71,7 @@ def new_entry(request, topic_id):
 	context = {'course': course, 'form': form}
 	return  render(request, 'mma/new_entry.html', context)
 
+@login_required
 def edit_entry(request, entry_id):
 	""" """
 	entry = Entry.objects.get(id=entry_id)
@@ -68,6 +87,18 @@ def edit_entry(request, entry_id):
 
 	context = {'entry': entry, 'course':course, 'form': form}
 	return render(request, 'mma/edit_entry.html', context)
+
+
+def check_owner(request, course):
+	""" Checking which is logged in. """
+
+	if course.owner != request.user:
+		raise Http404
+
+
+
+
+
 
 
 
