@@ -1,14 +1,20 @@
 {% extends "mma/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2><a href="{% url 'mma:course' course.id %}">{{ course }}</a></h2>
+{% endblock page_header %}
 
 {% block content %}
-  <p><a href=" url 'mma:course' course.id ">{{ course }}</a></p>
   
   <p>Edit entry:</p>
 
   <form action="{% url 'mma:edit_entry' entry.id %}" method="post">
   	{% csrf_token %}
-  	{{ form.as_p }}
-  	<button name="submit">Save changes</button>
+  	{% bootstrap_form form%}
+  	{% buttons %}
+  	<button name="submit" class="btn btn-primary">Save changes</button>
+    {% endbuttons %}
   </form>
 
 {% endblock content %}

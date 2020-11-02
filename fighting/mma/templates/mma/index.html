@@ -1,8 +1,12 @@
 {% extends "mma/base.html" %}
 
+{% block page_header %}
+  <div class="jumbotron">
+  	<h1 class="display-3">
+  		Learn about fighting
+  	</h1>
+  	<p class="lead">To learn fighting is essiential in life. Its better to be a Samurai in the garden then being a gardner in a war.</p>
 
-{% block content %}
-
-  <p>Learn about fighting</p>
-
-{% endblock content %}
+  	<a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+  </div>
+{% endblock page_header %}

@@ -34,6 +34,10 @@ INSTALLED_APPS = [
     # MY APPS
     'mma',
     'users',
+
+    # Third party apps
+    'bootstrap4',
+
     # DEFAULT DJANGO APPS
     'django.contrib.admin',
     'django.contrib.auth',

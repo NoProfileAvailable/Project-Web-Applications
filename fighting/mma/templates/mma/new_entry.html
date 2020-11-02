@@ -1,14 +1,19 @@
 {% extends "mma/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2><a href="{% url 'mma:course' course.id %}">{{ course }}</a></h2>
+{% endblock page_header %}
 
 {% block content %}
-
-  <p><a href="{% url 'mma:course' course.id %}">{{ course }}</a></p>
   <p>Add a new entry:</p>
 
   <form action="{% url 'mma:new_entry'  course.id %}" method="post">
   	{% csrf_token %}
-  	{{ form.as_p }}
-  	<button name="submit">Add entry</button>
+  	{% bootstrap_form form %}
+  	{% buttons %}
+  	<button name="submit" class="btn btn-primary">Add entry</button>
+    {% endbuttons %}
   </form>
 
  {% endblock content %}

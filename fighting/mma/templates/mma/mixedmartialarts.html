@@ -1,19 +1,20 @@
 {% extends "mma/base.html" %}
 
+{% block page_header %}
+  <h1>Mixed Martial Arts</h1>
+{% endblock page_header %}
+
 {% block content %}
-
-  <p>Mixed Martial Arts</p>
-
   <ul>
   	{% for courses in mixedmartialarts %}
-  	  <li>
+  	  <li><h4>
   	   <a href="{% url 'mma:course' courses.id %}">{{ courses }}</a>
-  	  </li>
+  	  </h4></li>
   	{% empty %}
-  	  <li>No topics have been added yet.</li>
+  	  <li><h4>No topics have been added yet.</h4></li>
   	{% endfor %}
   </ul>
   
-  <a href="{% url 'mma:new_course' %}">Add a new course</a>
+  <h5><a href="{% url 'mma:new_course' %}">Add a new course</h5></a>
 
 {% endblock content %}
