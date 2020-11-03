@@ -1,0 +1,1 @@
+web: gunicorn fighting.wsgi --log-file -
